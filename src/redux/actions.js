@@ -20,6 +20,10 @@ const removeContactRequest = createAction("contact/removeASKREQUEST");
 const removeContactSuccess = createAction("contact/removeTASKSUCCESS");
 const removeContactError = createAction("contact/removeTASKERROR");
 
+const editContactRequest = createAction("contact/editASKREQUEST");
+const editContactSuccess = createAction("contact/editTASKSUCCESS");
+const editContactError = createAction("contact/editTASKERROR");
+
 // const onAddContact = createAction("contact/ADD");
 const onDeleteContact = createAction("contact/DEL");
 const filterValue = createAction("contact/FV", (e) => ({
@@ -28,8 +32,12 @@ const filterValue = createAction("contact/FV", (e) => ({
   },
 }));
 const switchAlert = createAction("contact/ALERT");
+const switchEdit = createAction("contact/EDIT");
 
 export default {
+  editContactRequest,
+  editContactSuccess,
+  editContactError,
   addContactRequest,
   addContactSuccess,
   addContactError,
@@ -43,4 +51,5 @@ export default {
   onDeleteContact,
   filterValue,
   switchAlert,
+  switchEdit,
 };

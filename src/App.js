@@ -9,6 +9,7 @@ import Alert from "./alert/Alert";
 import { connect } from "react-redux";
 import contactActions from "./redux/actions";
 import contactsOperations from "./redux/contactsOperations";
+import contactsSelectors from "./redux/contactsSelectors";
 
 class App extends Component {
   componentDidMount() {
@@ -24,6 +25,7 @@ class App extends Component {
 
     return (
       <>
+        <button onClick={this.props.switchAlert}>Check</button>
         <TransitionGroup className={styles.titleWrapper}>
           <CSSTransition
             classNames={styles}
@@ -50,7 +52,7 @@ class App extends Component {
         <h2 className={styles.phonebookTitle}>Contacts</h2>
         <Filter />
         {isLoading && <h2>Loading contacts ...</h2>}
-        <Contacts contacts={this.props.contacts} />
+        <Contacts />
       </>
     );
   }
@@ -58,9 +60,9 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    contacts: state.contacts,
-    alert: state.alert,
-    isLoading: state.contacts.loading,
+    contacts: contactsSelectors.getState(state),
+    alert: contactsSelectors.getAlert(state),
+    isLoading: contactsSelectors.getLoading(state),
   };
 };
 

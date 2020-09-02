@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-// import { v4 as uuidv4 } from "uuid";
 import styles from "./Form.module.css";
 import { connect } from "react-redux";
 import contactActions from "../redux/actions";
 import contactsOperations from "../redux/contactsOperations";
+import contactsSelectors from "../redux/contactsSelectors";
 
 class Form extends Component {
   state = {
@@ -26,17 +26,11 @@ class Form extends Component {
       // id: uuidv4(),
     };
 
-    this.props.onAddContact(contactItem);
-    // const wrongContact = this.props.contacts.items.map(
-    //   (contact) => contact.name
-    // );
-    // wrongContact.find((item) => item === this.state.name)
-    //   ? this.props.switchAlert()
-    //   : this.props.onAddContact({
-    //       name: this.state.name,
-    //       number: this.state.number,
-    //       id: uuidv4(),
-    //     });
+    const wrongContact = this.props.items.map((contact) => contact.name);
+
+    wrongContact.find((item) => item === this.state.name)
+      ? this.props.switchAlert()
+      : this.props.onAddContact(contactItem);
     this.setState({ name: "" });
     this.setState({ number: "" });
   };
@@ -76,8 +70,8 @@ class Form extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    contacts: state.contacts,
-    alert: state.alert,
+    items: contactsSelectors.getContacts(state),
+    alert: contactsSelectors.getAlert(alert),
   };
 };
 const mapDispatchToProps = (dispatch) => {
