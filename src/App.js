@@ -25,13 +25,12 @@ class App extends Component {
 
     return (
       <>
-        <button onClick={this.props.switchAlert}>Check</button>
         <TransitionGroup className={styles.titleWrapper}>
           <CSSTransition
             classNames={styles}
             in={true}
             appear={true}
-            timeout={1500}
+            timeout={500}
             unmountOnExit
           >
             <h2 className={styles.phonebookTitle}> Phonebook</h2>
@@ -41,7 +40,7 @@ class App extends Component {
               classNames={stylesAlert}
               in={true}
               appear={true}
-              timeout={1500}
+              timeout={500}
               unmountOnExit
             >
               <Alert alertSwitch={this.alertSwitch} />

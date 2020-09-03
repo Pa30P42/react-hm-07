@@ -15,14 +15,13 @@ const alertSwitch = (state, action) => {
   return (state = !state);
 };
 const editContact = (state, { type, payload }) => {
-  console.log("state", state.items);
   return state.map((item) =>
     item.id === payload.id ? { ...item, ...payload } : item
   );
 };
-const editSwitch = (state, action) => {
-  return (state = !state);
-};
+// const editSwitch = (state, action) => {
+//   return (state = !state);
+// };
 const items = createReducer([], {
   [actions.fetchContactSuccess]: (state, action) => action.payload,
   [actions.removeContactSuccess]: removeTast,
@@ -38,9 +37,9 @@ const filter = createReducer("", {
 const alert = createReducer(false, {
   [actions.switchAlert]: alertSwitch,
 });
-const edit = createReducer(false, {
-  [actions.switchEdit]: editSwitch,
-});
+// const edit = createReducer(false, {
+//   [actions.switchEdit]: editSwitch,
+// });
 
 const loading = createReducer(false, {
   [actions.fetchContactRequest]: () => true,
@@ -51,4 +50,4 @@ const loading = createReducer(false, {
   [actions.fetchContactError]: () => false,
 });
 
-export default combineReducers({ items, edit, filter, alert, loading });
+export default combineReducers({ items, filter, alert, loading });

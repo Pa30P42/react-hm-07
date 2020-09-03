@@ -10,7 +10,6 @@ import actions from "../redux/actions";
 const ContactItem = ({ contact, deleteContact, id, editContact }) => {
   const dispatch = useDispatch();
 
-  console.log("editContact", editContact);
   const [isEdit, setIsEdit] = useState(false);
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
@@ -84,7 +83,10 @@ const ContactItem = ({ contact, deleteContact, id, editContact }) => {
 
             type="submit"
           >
-            Save Contact
+            Save
+          </button>
+          <button type="button" onClick={hideIsEdit}>
+            Cancel
           </button>
         </form>
       )}
